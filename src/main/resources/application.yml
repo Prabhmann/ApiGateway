@@ -1,0 +1,47 @@
+
+server:
+  port: 8080
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: dbsproject
+    key-store-type: pkcs12
+    key-alias: tomcat
+    key-password: dbsproject
+
+spring:
+  application:
+    name: api-gateway
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gateway_db
+    username: gateway
+    password: gateway
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  liquibase: #liquibase changelog properties
+    enabled: true
+    change-log: classpath:db/db-changelog-master.yaml
+
+  cloud:
+    gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+
