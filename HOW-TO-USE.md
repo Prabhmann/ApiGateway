@@ -1,3 +1,5 @@
+# How to use guide
+
 This projects provides you containerized api-gateway which handles authentication through JWT and provide dynamic routing supporting all HTTP methods.
 Scenario Example:
 
